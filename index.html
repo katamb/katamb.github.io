@@ -2,20 +2,23 @@
 <html lang="en">
 
 <head>
-    <!-- <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
     <!-- Add the title up top. -->
     <title>Cryptoapp</title>
 
 </head>
 
 <body>
-
-    <div class="text">
-        <h2>Crypto</h2>
-    </div>
+<!--
+    <div class="jumbotron">
+        <div class="text">
+            <h2>Crypto</h2>
+        </div>
+    </div> -->
 
     <form>
         <!-- An area for the input text. -->
@@ -33,17 +36,16 @@
         <div>
             <input type="text" id="uKey" name="uKey" placeholder="key">
         </div>
+    </form>
 
+    <form>
         <!-- Buttons. -->
         <div>
             <!-- Encrypt button. -->
             <button id="encrypt" type="button" onclick="otpEncrypt()">OTP-encrypt</button>
             <!-- Decrypt button. -->
             <button id="decrypt" type="button" onclick="otpDecrypt()">OTP-decrypt</button>
-        </div>
-        <div>
             <button>SHA-2</button>
-            <button>MD5</button>
         </div>
     </form>
 
@@ -59,6 +61,7 @@
     </form>
 
     <script>
+        // OTP encryption functionality is in this script
         function otpEncrypt() {
             // make key and input same length
             // take input and key values
@@ -81,9 +84,6 @@
             } else if (input.length < key.length) {
                     key = key.substring(0, input.length);
                 }
-            // change input and key to lowercase, makes it easier
-            input = input.toLowerCase();
-            key = key.toLowerCase();
 
             // chars available to be encrypted
             var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÕÄÖÜŽŠ';
@@ -110,6 +110,7 @@
         }
     </script>
     <script>
+        // OTP decryption functionality is in this script
         function otpDecrypt() {
             // make key and input same length
             // take input and key values
@@ -132,9 +133,6 @@
             } else if (input.length < key.length) {
                 key = key.substring(0, input.length);
             }
-            // change input and key to lowercase, makes it easier
-            input = input.toLowerCase();
-            key = key.toLowerCase();
 
             // chars available to be encrypted
             var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÕÄÖÜŽŠ';

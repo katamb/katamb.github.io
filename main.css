@@ -1,0 +1,53 @@
+body {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 16px;
+}
+
+/*
+got help for button design from here:
+https://www.w3schools.com/css/css3_buttons.asp
+ */
+button {
+    background-color: #310217;
+    border: white;
+    color: white;
+    padding: 6px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+/*
+help with aligning all to center came from
+https://stackoverflow.com/questions/35938650/align-label-to-centre-and-left-positions-in-div
+*/
+div {
+    text-align: center;
+    padding: 5px;
+}
+#orderName {
+    vertical-align: middle;
+}
+#orderNo {
+    float: left;
+}
+
+.jumbotron {
+    background-image: url("Silk1.png");
+    background-position: center center;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    position: relative;
+    top: 0;
+}
+
+.jumbotron .text{
+    display: block;
+    position: relative;
+    margin-top: 0;
+    color: #15010a;
+    text-align: center;
+}
