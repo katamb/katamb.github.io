@@ -14,7 +14,7 @@
 <body>
 
     <div class="text">
-        <h2>Krüptograafia</h2>
+        <h2>Crypto</h2>
     </div>
 
     <form>
@@ -23,7 +23,7 @@
             <label for="uInput">Write your text here: </label>
         </div>
         <div>
-            <input type="text" id="uInput" name="uInput">
+            <input type="text" id="uInput" name="uInput" placeholder="case-sensitive">
         </div>
 
         <!-- An area for the key. -->
@@ -86,8 +86,8 @@
             key = key.toLowerCase();
 
             // chars available to be encrypted
-            var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789';
-            var amountOfChars = 42;
+            var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÕÄÖÜŽŠ';
+            var amountOfChars = 74;
             var listOfInts = [];
 
             // take the index of the first letter in input and key from chars
@@ -137,8 +137,8 @@
             key = key.toLowerCase();
 
             // chars available to be encrypted
-            var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789';
-            var amountOfChars = 42;
+            var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÕÄÖÜŽŠ';
+            var amountOfChars = 74;
             var listOfInts = [];
 
             // take the index of the first letter in input and key from chars
