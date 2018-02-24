@@ -14,7 +14,8 @@
 <body>
 
     <div class="header">
-        <div style="display:inline-block; vertical-align:top" >
+        <div>
+            <!-- The logo was drawn by me, no need for references :D -->
             <img align="center" src="finallogo.PNG" border="0">
         </div>
         <div class="text">
@@ -47,7 +48,7 @@
             <button id="encrypt" type="button" onclick="otpEncrypt()">OTP-encrypt</button>
             <!-- Decrypt button. -->
             <button id="decrypt" type="button" onclick="otpDecrypt()">OTP-decrypt</button>
-            <button>SHA-2</button>
+            <button id="sha512" type="button" onclick="sha()">SHA-2</button>
         </div>
     </form>
 
@@ -88,8 +89,9 @@
                 }
 
             // chars available to be encrypted
-            var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÕÄÖÜŽŠ';
-            var amountOfChars = 74;
+            // all that's not in this list will still be encrypted and later decrypted as *'s
+            var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÕÄÖÜŽŠ ,.!?*';
+            var amountOfChars = 80;
             var listOfInts = [];
 
             // take the index of the first letter in input and key from chars
@@ -137,8 +139,9 @@
             }
 
             // chars available to be encrypted
-            var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÕÄÖÜŽŠ';
-            var amountOfChars = 74;
+            // all that's not in this list will still be encrypted and later decrypted as *'s
+            var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÕÄÖÜŽŠ ,.!?*';
+            var amountOfChars = 80;
             var listOfInts = [];
 
             // take the index of the first letter in input and key from chars
@@ -166,6 +169,28 @@
             document.getElementById("output").value = output;
         }
     </script>
+    <!--
+    I used js file from this site https://github.com/emn178/js-sha512.
+    The project is released under the MIT licence: https://opensource.org/licenses/MIT.
+    -->
+    <script type="text/javascript" src="sha512.js"></script>
+    <script>
+        function sha() {
+            var input = document.getElementById("uInput").value;
+
+            // if input length is 0 or key length is zero, do nothing
+            if (input.length === 0) {
+                return;
+            }
+
+            sha512(input);
+            var hash = sha512.create();
+            hash.update(input);
+
+            document.getElementById("output").value = hash;
+        }
+    </script>
+
 </body>
 
 </html>
