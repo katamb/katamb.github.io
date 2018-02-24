@@ -6,10 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <!-- Add the tittle up top. -->
     <title>Cryptoapp</title>
+
+</head>
+
+<body>
+
+    <div class="text">
+        <h2>Krüptograafia</h2>
+    </div>
+
+    <form>
+        <div>
+            <label for="uInput">Write your text here: </label>
+        </div>
+        <div>
+            <input type="text" id="uInput" name="uInput">
+        </div>
+
+        <div>
+            <label for="uKey">If you have a key, enter it here: </label>
+        </div>
+        <div>
+            <input type="text" id="uKey" name="uKey">
+        </div>
+
+        <div>
+            <button id="encrypt" type="button" onclick="otpEncrypt()">OTP-encrypt</button>
+            <button id="decrypt" type="button" onclick="otpDecrypt()">OTP-decrypt</button>
+        </div>
+        <div>
+            <button>SHA-2</button>
+            <button>MD5</button>
+        </div>
+    </form>
+
+
+    <form>
+        <div>
+            <label for="output">Here's the hidden message: </label>
+        </div>
+        <div>
+            <textarea id="output" name="output"></textarea>
+        </div>
+    </form>
+
     <script>
-        alert("heii");
-    </script>
-    <!-- <script>
         function otpEncrypt() {
             // make key and input same length
             // take input and key values
@@ -91,50 +132,7 @@
             }
             document.getElementById("output").value = output;
         }
-    </script> -->
-</head>
-
-<body>
-
-    <div class="text">
-        <h2>Krüptograafia</h2>
-    </div>
-
-    <form>
-        <div>
-            <label for="uInput">Write your text here: </label>
-        </div>
-        <div>
-            <input type="text" id="uInput" name="uInput">
-        </div>
-
-        <div>
-            <label for="uKey">If you have a key, enter it here: </label>
-        </div>
-        <div>
-            <input type="text" id="uKey" name="uKey">
-        </div>
-
-        <div>
-            <button id="encrypt" type="button" onclick="otpEncrypt()">OTP-encrypt</button>
-            <button id="decrypt" type="button" onclick="otpDecrypt()">OTP-decrypt</button>
-        </div>
-        <div>
-            <button>SHA-2</button>
-            <button>MD5</button>
-        </div>
-    </form>
-
-
-    <form>
-        <div>
-            <label for="output">Here's the hidden message: </label>
-        </div>
-        <div>
-            <textarea id="output" name="output"></textarea>
-        </div>
-    </form>
-
+    </script>
 </body>
 
 <!-- </html> -->
