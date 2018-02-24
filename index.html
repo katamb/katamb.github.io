@@ -59,7 +59,7 @@
             <label for="output">Here's the hidden message: </label>
         </div>
         <div>
-            <textarea id="output" name="output"></textarea>
+            <textarea id="output" name="output" readonly="readonly"></textarea>
         </div>
     </form>
 
@@ -170,7 +170,7 @@
         }
     </script>
     <!--
-    I used js file from this site https://github.com/emn178/js-sha512.
+    I used javascript file from this site https://github.com/emn178/js-sha512.
     The project is released under the MIT licence: https://opensource.org/licenses/MIT.
     -->
     <script type="text/javascript" src="sha512.js"></script>
@@ -183,6 +183,7 @@
                 return;
             }
 
+            // calls out functions from sha512.js
             sha512(input);
             var hash = sha512.create();
             hash.update(input);
