@@ -1,10 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- <html lang="en"> -->
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- Add the tittle up top. -->
+    <title>Cryptoapp</title>
+    <script>
+        function otpEncrypt() {
+            // make key and input same length
+            // take input and key values
+            var input = document.getElementById("uInput").value;
+            var key = document.getElementById("uKey").value;
+
+            // if inout is longer than key then start to repeat key until they are the same length
+            if (input.length > key.length) {
+                var i = 0;
+                while (key.length < input.length) {
+                    key = key + key[i];
+                    i += 1;
+                }
+            // if key is longer use only the beginning of the key
+            } else if (input.length < key.length) {
+                    key = key.substring(0, input.length);
+                }
+            // change input and key to lowercase, makes it easier
+            input = input.toLowerCase();
+            key = key.toLowerCase();
+
+            // chars available to be encrypted
+            var chars = 'abcdefghijklmnopqrstuvwxyz';
+            var amountOfChars = 26;
+            var listOfInts = [];
+
+            // take the index of the first letter in input and key from chars
+            // add them together and do the modulo operation
+            // add the numbers to list
+            for (i = 0; i < input.length; i++) {
+                var sum = (chars.indexOf(input[i]) + chars.indexOf(key[i])) % amountOfChars;
+                listOfInts.push(sum);
+            }
+
+            var output = '';
+
+            // for every value in list, take a letter from chars according to that value
+            for (i = 0; i < listOfInts.length; i++) {
+                output += chars.substring(listOfInts[i], listOfInts[i]+1);
+            }
+
+            // add the output value to the text field
+            document.getElementById("output").value = output;
+        }
+    </script>
+    <script>
+        function otpDecrypt() {
+            // make key and input same length
+            var input = document.getElementById("uInput").value;
+            var key = document.getElementById("uKey").value;
+
+            if (input.length > key.length) {
+                var i = 0;
+                while (key.length < input.length) {
+                    key = key + key[i];
+                    i += 1;
+                }
+            } else if (input.length < key.length) {
+                key = key.substring(0, input.length);
+            }
+            input = input.toLowerCase();
+            key = key.toLowerCase();
+
+            var chars = 'abcdefghijklmnopqrstuvwxyz';
+            var list_of_ints = [];
+
+            for (i = 0; i < input.length; i++) {
+                var sum = (chars.indexOf(input[i]) - chars.indexOf(key[i]));
+                if (sum < 0) {
+                    sum += 26;
+                }
+                sum = sum % 26;
+                list_of_ints.push(sum);
+            }
+            var output = '';
+
+            for (i = 0; i < list_of_ints.length; i++) {
+                output += chars.substring(list_of_ints[i], list_of_ints[i]+1);
+            }
+            document.getElementById("output").value = output;
+        }
+    </script>
 </head>
+
 <body>
-    <button>MD5</button>
+
+    <div class="text">
+        <h2>Krüptograafia</h2>
+    </div>
+
+    <form>
+        <div>
+            <label for="uInput">Write your text here: </label>
+        </div>
+        <div>
+            <input type="text" id="uInput" name="uInput">
+        </div>
+
+        <div>
+            <label for="uKey">If you have a key, enter it here: </label>
+        </div>
+        <div>
+            <input type="text" id="uKey" name="uKey">
+        </div>
+
+        <div>
+            <button id="encrypt" type="button" onclick="otpEncrypt()">OTP-encrypt</button>
+            <button id="decrypt" type="button" onclick="otpDecrypt()">OTP-decrypt</button>
+        </div>
+        <div>
+            <button>SHA-2</button>
+            <button>MD5</button>
+        </div>
+    </form>
+
+
+    <form>
+        <div>
+            <label for="output">Here's the hidden message: </label>
+        </div>
+        <div>
+            <textarea id="output" name="output"></textarea>
+        </div>
+    </form>
+
 </body>
+
 </html>
