@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="main.css" rel="stylesheet">
     <!-- Add the title up top. -->
-    <title>Cryptoapp</title>
+    <title>CryptoApp</title>
 
 </head>
 
@@ -45,9 +45,9 @@
         <!-- Buttons. -->
         <div>
             <!-- Encrypt button. -->
-            <button id="encrypt" type="button" onclick="otpEncrypt()">OTP-encrypt</button>
+            <button id="encrypt" type="button" onclick="otp('encrypt')">OTP-encrypt</button>
             <!-- Decrypt button. -->
-            <button id="decrypt" type="button" onclick="otpDecrypt()">OTP-decrypt</button>
+            <button id="decrypt" type="button" onclick="otp('decrypt')">OTP-decrypt</button>
             <button id="sha512" type="button" onclick="sha()">SHA-2</button>
         </div>
     </form>
@@ -64,58 +64,8 @@
     </form>
 
     <script>
-        // OTP encryption functionality is in this script
-        function otpEncrypt() {
-            // make key and input same length
-            // take input and key values
-            var input = document.getElementById("uInput").value;
-            var key = document.getElementById("uKey").value;
-
-            // if input length is 0 or key length is zero, do nothing
-            if (input.length === 0 || key.length === 0) {
-                return;
-            }
-
-            // if input is longer than key then start to repeat key until they are the same length
-            if (input.length > key.length) {
-                var i = 0;
-                while (key.length < input.length) {
-                    key = key + key[i];
-                    i += 1;
-                }
-            // if key is longer use only the beginning of the key
-            } else if (input.length < key.length) {
-                    key = key.substring(0, input.length);
-                }
-
-            // chars available to be encrypted
-            // all that's not in this list will still be encrypted and later decrypted as *'s
-            var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÕÄÖÜŽŠ ,.!?*';
-            var amountOfChars = 80;
-            var listOfInts = [];
-
-            // take the index of the first letter in input and key from chars
-            // add them together and do the modulo operation
-            // add the numbers to list
-            for (i = 0; i < input.length; i++) {
-                var sum = (chars.indexOf(input[i]) + chars.indexOf(key[i])) % amountOfChars;
-                listOfInts.push(sum);
-            }
-
-            var output = '';
-
-            // for every value in list, take a letter from chars according to that value
-            for (i = 0; i < listOfInts.length; i++) {
-                output += chars.substring(listOfInts[i], listOfInts[i]+1);
-            }
-
-            // add the output value to the text field
-            document.getElementById("output").value = output;
-        }
-    </script>
-    <script>
-        // OTP decryption functionality is in this script
-        function otpDecrypt() {
+        // OTP encryption and decryption functionalities are in this script
+        function otp(method) {
             // make key and input same length
             // take input and key values
             var input = document.getElementById("uInput").value;
@@ -143,19 +93,30 @@
             var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÕÄÖÜŽŠ ,.!?*';
             var amountOfChars = 80;
             var listOfInts = [];
+            var sum = 0;
 
-            // take the index of the first letter in input and key from chars
-            // subtract key from input
-            // if result is negative, add amount of char to it
-            // do the modulo operation
-            // add the numbers to list
-            for (i = 0; i < input.length; i++) {
-                var sum = (chars.indexOf(input[i]) - chars.indexOf(key[i]));
-                if (sum < 0) {
-                    sum += amountOfChars;
+            if (method === 'encrypt') {
+                // take the index of the first letter in input and key from chars
+                // add them together and do the modulo operation
+                // add the numbers to list
+                for (i = 0; i < input.length; i++) {
+                    sum = (chars.indexOf(input[i]) + chars.indexOf(key[i])) % amountOfChars;
+                    listOfInts.push(sum);
                 }
-                sum = sum % amountOfChars;
-                listOfInts.push(sum);
+            } else if (method === 'decrypt') {
+                // take the index of the first letter in input and key from chars
+                // subtract key from input
+                // if result is negative, add amount of char to it
+                // do the modulo operation
+                // add the numbers to list
+                for (i = 0; i < input.length; i++) {
+                    sum = (chars.indexOf(input[i]) - chars.indexOf(key[i]));
+                    if (sum < 0) {
+                        sum += amountOfChars;
+                    }
+                    sum = sum % amountOfChars;
+                    listOfInts.push(sum);
+                }
             }
 
             var output = '';
@@ -175,6 +136,7 @@
     -->
     <script type="text/javascript" src="sha512.js"></script>
     <script>
+        // realises the sha512 method
         function sha() {
             var input = document.getElementById("uInput").value;
 
