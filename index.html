@@ -198,6 +198,7 @@
                 var database = text.split("\n");
 
                 // go over every word in database, turn it into md5 hash and compare to input one
+                // database is from this site: https://raw.githubusercontent.com/duyetdev/bruteforce-database/master/1000000-password-seclists.txt
                 for (var i = 0; i < database.length; i++) {
                     var word = database[i];
                     word = word.substring(0, word.length - 1);
