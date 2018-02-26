@@ -201,7 +201,6 @@
                 // database is from this site: https://raw.githubusercontent.com/duyetdev/bruteforce-database/master/1000000-password-seclists.txt
                 for (var i = 0; i < database.length; i++) {
                     var word = database[i];
-                    // word = word.substring(0, word.length - 1);
                     var hash = hex_md5(word);
                     // if input hash and database one match, return the word
                     if (hash === input) {
