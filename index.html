@@ -50,6 +50,7 @@
             <!-- Decrypt button. -->
             <button id="decrypt" type="button" onclick="otp('decrypt')">OTP-decrypt</button>
             <button id="sha512" type="button" onclick="sha()">SHA-2</button>
+            <button id="md" type="button" onclick="mdfive()">MD5</button>
         </div>
     </form>
 
@@ -152,6 +153,57 @@
             hash.update(input);
 
             document.getElementById("output").value = hash;
+        }
+    </script>
+    <!--
+    Got the md5 generator from:
+    http://www.myersdaily.org/joseph/javascript/md5.js
+    -->
+    <script type="text/javascript" src="md5.js"></script>
+    <script>
+        function mdfive() {
+            getTextFromFile("hash.txt",function(text) {
+                // hash from user
+                var input = document.getElementById("uInput").value;
+
+                // if input length is 0 or key length is zero, do nothing
+                if (input.length === 0) {
+                    return;
+                }
+
+                // the text
+                var database = text.split("\n");
+
+                // go over every word in database, turn it into md5 hash and compare to input one
+                for (var i = 0; i < database.length; i++) {
+                    var word = database[i];
+                    word = word.substring(0, word.length - 1);
+                    var hash = md5(word);
+                    // if input hash and database one match, return the word
+                    if (hash === input) {
+                        document.getElementById("output").value = word;
+                        return;
+                    }
+                }
+                // let user know if we couldn't crack the code
+                document.getElementById("output").value = "Couldn't find the original!";
+            });
+        }
+
+        // got this function from:
+        // https://stackoverflow.com/questions/33842288/read-data-of-txt-file-from-a-folder-and-fill-textbox-using-javascript-with-using
+        function getTextFromFile(fileName, callBack) {
+            var file = new XMLHttpRequest();
+            file.open("GET", fileName, false);
+            file.onreadystatechange = function () {
+                if (file.readyState === 4) {
+                    if (file.status === 200 || file.status === 0) {
+                        var text = file.responseText;
+                        callBack(text);
+                    }
+                }
+            };
+            file.send(null);
         }
     </script>
 
