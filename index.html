@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="logo.PNG"/>
     <link href="main.css" rel="stylesheet">
     <!-- Add the title up top. -->
@@ -49,7 +50,9 @@
             <button id="encrypt" type="button" onclick="otp('encrypt')">OTP-encrypt</button>
             <!-- Decrypt button. -->
             <button id="decrypt" type="button" onclick="otp('decrypt')">OTP-decrypt</button>
+            <!-- Sha-512 button. -->
             <button id="sha512" type="button" onclick="sha()">SHA-2</button>
+            <!-- MD5 button. -->
             <button id="md" type="button" onclick="mdfive()">MD5-decrypt</button>
         </div>
     </form>
@@ -158,7 +161,7 @@
     <!--
     I got the md5 generator from:
     http://pajhome.org.uk/crypt/md5/md5.html
-    The code is distributed under the BSD Licence
+    The code is distributed under the BSD Licence:
     * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
     * Digest Algorithm, as defined in RFC 1321.
     * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
@@ -204,6 +207,7 @@
                 */
                 for (var i = 0; i < database.length; i++) {
                     var word = database[i];
+                    // here I use the md5.js functionality
                     var hash = hex_md5(word);
                     // if input hash and database one match, return the word
                     if (hash === input) {
