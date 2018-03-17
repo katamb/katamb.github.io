@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="trust.PNG"/>
+    <link href="main.css" rel="stylesheet">
+    <!-- Add the title up top. -->
+    <title>TrustGame</title>
+
+</head>
+
+<body>
+
+<div class="header">
+    <div>
+        <!-- The logo was drawn by me, no need for references -->
+        <img align="center" src="trust.PNG" border="0">
+    </div>
+    <div class="text">
+    	<!-- The game itself is available here: http://ncase.me/trust/ -->
+        <h2>Calculate trust game results</h2>
+    </div>
+</div>
+
+<form>
+    <!-- An area for the input text. -->
+    <div>
+        <label for="uInput">Write your decisions in binary here: </label>
+    </div>
+    <div>
+        <input type="text" id="uInput" name="uInput" placeholder="decision in binary">
+    </div>
+
+    <!-- An area for the key. -->
+    <div>
+        <label for="uValue">If you want to check the given number, enter it here: </label>
+    </div>
+    <div>
+        <input type="text" id="uValue" name="uValue" placeholder="value">
+    </div>
+</form>
+
+<form>
+    <!-- Buttons. -->
+    <div>
+        <!-- Encrypt button. -->
+        <button id="encrypt" type="button" onclick="calculateValue('calculate')">Calculate</button>
+        <!-- Decrypt button. -->
+        <button id="decrypt" type="button" onclick="calculateValue('check')">Check</button>
+    </div>
+</form>
+
+
+<form>
+    <!-- An area for the output text. -->
+    <div>
+        <label for="output">Here's the result: </label>
+    </div>
+    <div>
+        <textarea id="output" name="output" readonly="readonly"></textarea>
+    </div>
+</form>
+
+
+<div class="text">
+	<!-- The game itself is available here: http://ncase.me/trust/ -->
+    <p>The game itself is available here: <a href="http://ncase.me/trust/">http://ncase.me/trust/</a></p>
+</div>
+
+<script>
+    // calculate the value from binary
+    function calculateValue(method) {
+        var input = document.getElementById("uInput").value;
+        var userValue = document.getElementById("uValue").value;
+
+        // if input length isn't 25
+        if (!(input.length === 25)) {
+            document.getElementById("output").value = "Input invalid: too long or too short!";
+            return;
+        }
+
+        // keeps the result
+        var theProfit = 0;
+        var index;
+
+        // the 'copycat' for the first five times
+        for (index = 0; index < 5; index++) {
+            // first value
+            if (index === 0) {
+                if (input.substring(index, index+1) === "1") {
+                    theProfit += 2;
+                } else {
+                    theProfit += 3;
+                }
+                continue;
+            }
+            // if the last input was 1
+            if (input.substring(index, index+1) === "1" && input.substring(index-1, index) === "1") {
+                theProfit += 2;
+            } else if (input.substring(index, index+1) === "0" && input.substring(index-1, index) === "1") {
+                theProfit += 3;
+            // if the last input was 0
+            } else if (input.substring(index, index+1) === "1" && input.substring(index-1, index) === "0") {
+                theProfit -= 1;
+            } else if (input.substring(index, index+1) === "0" && input.substring(index-1, index) === "0") {
+                theProfit += 0;
+            }
+        }
+
+        // the 'all cheat' for 4 times
+        for (index; index < 9; index++) {
+            // if the last input was 1
+            if (input.substring(index, index + 1) === "1") {
+                theProfit -= 1;
+            } else if (input.substring(index, index + 1) === "0") {
+                theProfit += 0;
+            }
+        }
+
+        // the 'all cooperate' for 4 times
+        for (index; index < 13; index++) {
+            // if the last input was 1
+            if (input.substring(index, index + 1) === "1") {
+                theProfit += 2;
+            } else if (input.substring(index, index + 1) === "0") {
+                theProfit += 3;
+            }
+        }
+
+        // the 'grudger' for 5 times
+        var cheatedOnce = false;
+        for (index; index < 18; index++) {
+            // if cheated once, enemy won't play fair
+            if (cheatedOnce) {
+                if (input.substring(index, index+1) === "1") {
+                    theProfit -= 1;
+                } else if (input.substring(index, index+1) === "0") {
+                    theProfit += 0;
+                }
+            } else if (input.substring(index, index+1) === "1") {
+                theProfit += 2;
+            } else if (input.substring(index, index+1) === "0") {
+                theProfit += 3;
+                cheatedOnce = true;
+            }
+        }
+
+        // the detective for 7 times
+        var alwaysCheatMode = true;
+        for (index; index < 25; index++) {
+            // if cheated once, enemy won't play fair
+            if (index === 18) {
+                if (input.substring(index, index+1) === "1") {
+                    theProfit += 2;
+                } else if (input.substring(index, index+1) === "0") {
+                    theProfit += 3;
+                    alwaysCheatMode = false;
+                }
+            } else if (index === 19) {
+                if (input.substring(index, index+1) === "1") {
+                    theProfit -= 1;
+                } else if (input.substring(index, index+1) === "0") {
+                    theProfit += 0;
+                    alwaysCheatMode = false;
+                }
+            } else if (index === 20) {
+                if (input.substring(index, index+1) === "1") {
+                    theProfit += 2;
+                } else if (input.substring(index, index+1) === "0") {
+                    theProfit += 3;
+                    alwaysCheatMode = false;
+                }
+            } else if (index === 21) {
+                if (input.substring(index, index+1) === "1") {
+                    theProfit += 2;
+                } else if (input.substring(index, index+1) === "0") {
+                    theProfit += 3;
+                    alwaysCheatMode = false;
+                }
+            // if didn't cheat once in first 4 times -> always cheat
+            } else if (alwaysCheatMode) {
+                if (input.substring(index, index + 1) === "1") {
+                    theProfit -= 1;
+                } else if (input.substring(index, index + 1) === "0") {
+                    theProfit += 0;
+                }
+            // if cheated at least once in first 4 times -> copycat
+            } else if (input.substring(index, index+1) === "1" && input.substring(index-1, index) === "1") {
+                theProfit += 2;
+            } else if (input.substring(index, index+1) === "0" && input.substring(index-1, index) === "1") {
+                theProfit += 3;
+                // if the last input was 0
+            } else if (input.substring(index, index+1) === "1" && input.substring(index-1, index) === "0") {
+                theProfit -= 1;
+            } else if (input.substring(index, index+1) === "0" && input.substring(index-1, index) === "0") {
+                theProfit += 0;
+            }
+        }
+
+        if (method === 'calculate') {
+            // add the output value to the text field
+            document.getElementById("output").value = theProfit.toString();
+        } else if (method === 'check') {
+            if (userValue.toString() === theProfit.toString()) {
+                document.getElementById("output").value = "Values match!";
+            } else {
+                document.getElementById("output").value = "Values don't match!";
+            }
+        }
+    }
+</script>
+
+</body>
+
+</html>

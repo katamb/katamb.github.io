@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="logo.PNG"/>
+    <link href="main.css" rel="stylesheet">
+    <!-- Add the title up top. -->
+    <title>CryptoApp</title>
+
+</head>
+
+<body>
+
+    <div class="header">
+        <div>
+            <!-- The logo was drawn by me, no need for references :D -->
+            <img align="center" src="logo.PNG" border="0">
+        </div>
+        <div class="text">
+            <h2>Simple Cryptography</h2>
+        </div>
+    </div>
+
+    <form>
+        <!-- An area for the input text. -->
+        <div>
+            <label for="uInput">Write your text here: </label>
+        </div>
+        <div>
+            <input type="text" id="uInput" name="uInput" placeholder="message">
+        </div>
+
+        <!-- An area for the key. -->
+        <div>
+            <label for="uKey">If you have a key, enter it here: </label>
+        </div>
+        <div>
+            <input type="text" id="uKey" name="uKey" placeholder="key">
+        </div>
+    </form>
+
+    <form>
+        <!-- Buttons. -->
+        <div>
+            <!-- Encrypt button. -->
+            <button id="encrypt" type="button" onclick="otp('encrypt')">OTP-encrypt</button>
+            <!-- Decrypt button. -->
+            <button id="decrypt" type="button" onclick="otp('decrypt')">OTP-decrypt</button>
+            <!-- Sha-512 button. -->
+            <button id="sha512" type="button" onclick="sha()">SHA-2</button>
+            <!-- MD5 button. -->
+            <button id="md" type="button" onclick="mdfive()">MD5-decrypt</button>
+        </div>
+    </form>
+
+
+    <form>
+        <!-- An area for the output text. -->
+        <div>
+            <label for="output">Here's the hidden message: </label>
+        </div>
+        <div>
+            <textarea id="output" name="output" readonly="readonly"></textarea>
+        </div>
+    </form>
+
+    <script>
+        // OTP encryption and decryption functionalities are in this script
+        function otp(method) {
+            // make key and input same length
+            // take input and key values
+            var input = document.getElementById("uInput").value;
+            var key = document.getElementById("uKey").value;
+
+            // if input length is 0 or key length is zero, do nothing
+            if (input.length === 0 || key.length === 0) {
+                return;
+            }
+
+            // if input is longer than key then start to repeat key until they are the same length
+            if (input.length > key.length) {
+                var i = 0;
+                while (key.length < input.length) {
+                    key = key + key[i];
+                    i += 1;
+                }
+                // if key is longer use only the beginning of the key
+            } else if (input.length < key.length) {
+                key = key.substring(0, input.length);
+            }
+
+            // chars available to be encrypted
+            // all that's not in this list will still be encrypted and later decrypted as *'s
+            var chars = 'abcdefghijklmnopqrstuvwxyzõäöüžš0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÕÄÖÜŽŠ ,.!?*';
+            var amountOfChars = 80;
+            var listOfInts = [];
+            var sum = 0;
+
+            if (method === 'encrypt') {
+                // take the index of the first letter in input and key from chars
+                // add them together and do the modulo operation
+                // add the numbers to list
+                for (i = 0; i < input.length; i++) {
+                    sum = (chars.indexOf(input[i]) + chars.indexOf(key[i])) % amountOfChars;
+                    listOfInts.push(sum);
+                }
+            } else if (method === 'decrypt') {
+                // take the index of the first letter in input and key from chars
+                // subtract key from input
+                // if result is negative, add amount of char to it
+                // do the modulo operation
+                // add the numbers to list
+                for (i = 0; i < input.length; i++) {
+                    sum = (chars.indexOf(input[i]) - chars.indexOf(key[i]));
+                    if (sum < 0) {
+                        sum += amountOfChars;
+                    }
+                    sum = sum % amountOfChars;
+                    listOfInts.push(sum);
+                }
+            }
+
+            var output = '';
+
+            // for every value in list, take a letter from chars according to that value
+            for (i = 0; i < listOfInts.length; i++) {
+                output += chars.substring(listOfInts[i], listOfInts[i]+1);
+            }
+
+            // add the output value to the text field
+            document.getElementById("output").value = output;
+        }
+    </script>
+    <!--
+    I used javascript file from this site https://github.com/emn178/js-sha512.
+    The project is released under the MIT licence: https://opensource.org/licenses/MIT.
+    -->
+    <script type="text/javascript" src="sha512.js"></script>
+    <script>
+        // realises the sha512 method
+        function sha() {
+            var input = document.getElementById("uInput").value;
+
+            // if input length is 0 or key length is zero, do nothing
+            if (input.length === 0) {
+                return;
+            }
+
+            // calls out functions from sha512.js
+            sha512(input);
+            var hash = sha512.create();
+            hash.update(input);
+
+            document.getElementById("output").value = hash;
+        }
+    </script>
+    <!--
+    I got the md5 generator from:
+    http://pajhome.org.uk/crypt/md5/md5.html
+    The code is distributed under the BSD Licence:
+    * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
+    * Digest Algorithm, as defined in RFC 1321.
+    * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
+    * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+    * Distributed under the BSD License
+    * See http://pajhome.org.uk/crypt/md5 for more info.
+    -->
+    <script type="text/javascript" src="md5.js"></script>
+    <script>
+        // got this function from:
+        // https://stackoverflow.com/questions/33842288/read-data-of-txt-file-from-a-folder-and-fill-textbox-using-javascript-with-using
+        function getTextFromFile(fileName, callBack) {
+            var file = new XMLHttpRequest();
+            file.open("GET", fileName, false);
+            file.onreadystatechange = function () {
+                if (file.readyState === 4) {
+                    if (file.status === 200 || file.status === 0) {
+                        var text = file.responseText;
+                        callBack(text);
+                    }
+                }
+            };
+            file.send(null);
+        }
+
+        function mdfive() {
+            getTextFromFile("hash.txt",function(text) {
+                // hash from user
+                var input = document.getElementById("uInput").value;
+
+                // if input length is 0 or key length is zero, do nothing
+                if (input.length === 0) {
+                    return;
+                }
+
+                // the text
+                var database = text.split("\n");
+
+                /*
+                go over every word in database, turn it into md5 hash and compare to the input one
+                database is from this site: https://raw.githubusercontent.com/duyetdev/bruteforce-database/master/1000000-password-seclists.txt
+                and I added some words to it to make it even bigger
+                */
+                for (var i = 0; i < database.length; i++) {
+                    var word = database[i];
+                    // here I use the md5.js functionality
+                    var hash = hex_md5(word);
+                    // if input hash and database one match, return the word
+                    if (hash === input) {
+                        document.getElementById("output").value = word;
+                        return;
+                    }
+                }
+                // let user know if we couldn't crack the code
+                document.getElementById("output").value = "Couldn't find the original!";
+            });
+        }
+    </script>
+
+</body>
+
+</html>
