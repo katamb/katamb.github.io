@@ -27,7 +27,7 @@
 </div>
 
 <form>
-    <!-- An area for the input text. -->
+    <!-- An area for the binary input. -->
     <div>
         <label for="uInput">Write your decisions in binary here: </label>
     </div>
@@ -35,7 +35,7 @@
         <input type="text" id="uInput" name="uInput" placeholder="decision in binary">
     </div>
 
-    <!-- An area for the key. -->
+    <!-- An area for the given number, if You wan't to check it. -->
     <div>
         <label for="uValue">If you want to check the given number, enter it here: </label>
     </div>
@@ -47,9 +47,9 @@
 <form>
     <!-- Buttons. -->
     <div>
-        <!-- Encrypt button. -->
+        <!-- Calculate button. -->
         <button id="encrypt" type="button" onclick="calculateValue('calculate')">Calculate</button>
-        <!-- Decrypt button. -->
+        <!-- Check button. -->
         <button id="decrypt" type="button" onclick="calculateValue('check')">Check</button>
     </div>
 </form>
@@ -72,7 +72,11 @@
 </div>
 
 <script>
-    // calculate the value from binary
+    /* 
+    Calculate the value from binary.
+    Every character which is not 1, is counted as 0!  
+	If input length isn't 25, nothing is calculated, as for completing the game, 25 values need to be inserted!
+    */
     function calculateValue(method) {
         var input = document.getElementById("uInput").value;
         var userValue = document.getElementById("uValue").value;
