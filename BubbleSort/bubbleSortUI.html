@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="main.css" rel="stylesheet">
+    <title>Sort</title>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="text">
+        <h2>Sort</h2>
+    </div>
+</div>
+
+<form>
+    <!-- An area for the input. -->
+    <div>
+        <label for="input">Input text goes here: </label>
+    </div>
+    <div>
+        <input type="text" id="input" name="input" placeholder="input text">
+    </div>
+</form>
+
+<form>
+    <!-- Buttons. -->
+    <div>
+        <button id="bubblesort" type="button" onclick="bubbleSort()">sort</button>
+        <button id="obfuscatedsort" type="button" onclick="obfuscatedSort()">obfuscated sort</button>
+    </div>
+</form>
+
+<form>
+    <!-- An area for the output. -->
+    <div>
+        <label for="output">Here's the result: </label>
+    </div>
+    <div>
+        <textarea id="output" name="output" readonly="readonly"></textarea>
+    </div>
+</form>
+
+<script type="text/javascript" src="bubbleSort.js"></script>
+<script type="text/javascript" src="obfuscatedSort.js"></script>
+
+</body>
+</html>
+
