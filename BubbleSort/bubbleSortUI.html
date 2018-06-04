@@ -3,47 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <link href="main.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="top_image.PNG"/>
     <title>Sort</title>
 </head>
 
 <body>
 
-<div class="header">
-    <div class="text">
-        <h2>Sort</h2>
+    <div class="header">
+        <div>
+            <img align="center" src="top_image.PNG" border="0">
+        </div>
+        <div class="text">
+            <h2>Sort</h2>
+        </div>
     </div>
-</div>
 
-<form>
-    <!-- An area for the input. -->
-    <div>
-        <label for="input">Input text goes here: </label>
-    </div>
-    <div>
-        <input type="text" id="input" name="input" placeholder="input text">
-    </div>
-</form>
+    <form>
+        <!-- An area for the input. -->
+        <div>
+            <p>Sort a comma separated array of numbers.</p>
+            <p>Both buttons have the same functionality, </p>
+            <p>obfuscated sort source code is just made unreadable.</p>
+            <label for="input">Input text goes here: </label>
+        </div>
+        <div>
+            <input type="text" id="input" name="input" placeholder="input text">
+        </div>
+    </form>
 
-<form>
-    <!-- Buttons. -->
-    <div>
-        <button id="bubblesort" type="button" onclick="bubbleSort()">sort</button>
-        <button id="obfuscatedsort" type="button" onclick="obfuscatedSort()">obfuscated sort</button>
-    </div>
-</form>
+    <form>
+        <!-- Buttons. -->
+        <div>
+            <button id="bubblesort" type="button" onclick="bubbleSort()">Normal sort</button>
+            <button id="obfuscatedsort" type="button" onclick="obfuscatedSort()">Obfuscated sort</button>
+        </div>
+    </form>
 
-<form>
-    <!-- An area for the output. -->
-    <div>
-        <label for="output">Here's the result: </label>
-    </div>
-    <div>
-        <textarea id="output" name="output" readonly="readonly"></textarea>
-    </div>
-</form>
+    <form>
+        <!-- An area for the output. -->
+        <div>
+            <label for="output">Here's the result: </label>
+        </div>
+        <div>
+            <textarea id="output" name="output" readonly="readonly"></textarea>
+        </div>
+    </form>
 
-<script type="text/javascript" src="bubbleSort.js"></script>
-<script type="text/javascript" src="obfuscatedSort.js"></script>
+    <script type="text/javascript" src="bubbleSort.js"></script>
+    <script type="text/javascript" src="obfuscatedSort.js"></script>
 
 </body>
 </html>

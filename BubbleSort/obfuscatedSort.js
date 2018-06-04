@@ -12,9 +12,9 @@ gjhdksonfuinevinsesinvspn.push(parseInt(adgjihgrgahgarhues[kfmgknlknsd]));}{{{{{
 do{fdkanhbinmffnbdfjugnh=gfdshdgsjh;{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 for(var nfgdsjgnjdsfngn=hgjsdfglhgl;nfgdsjgnjdsfngn<gjhdksonfuinevinsesinvspn.length-gkihnssng;nfgdsjgnjdsfngn++){{{{}}}
 if(gjhdksonfuinevinsesinvspn[nfgdsjgnjdsfngn]>gjhdksonfuinevinsesinvspn[nfgdsjgnjdsfngn+gkihnssng]){{{{{{{{{{{}}}}}}}}}}
-var bhdsfbhdbsfhdf = gjhdksonfuinevinsesinvspn[nfgdsjgnjdsfngn];dngsuigsuigusdig+=gkihnssng;{}{{}}if(gfdshdgsjh){{{{}}}}
+var bhdsfbhdbsfhdf=gjhdksonfuinevinsesinvspn[nfgdsjgnjdsfngn];dngsuigsuigusdig+=gkihnssng;{}{{}}if(gfdshdgsjh){{{{{}}}}}
 {dngsuigsuigusdig-=dngsuigsuigusdig}{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 gjhdksonfuinevinsesinvspn[nfgdsjgnjdsfngn]=gjhdksonfuinevinsesinvspn[nfgdsjgnjdsfngn+gkihnssng];{{{{{{{{{{{{}}}}}}}}}}}}
 gjhdksonfuinevinsesinvspn[nfgdsjgnjdsfngn+gkihnssng]=bhdsfbhdbsfhdf;{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}
-fdkanhbinmffnbdfjugnh = hghhjfyjf;}}}while(fdkanhbinmffnbdfjugnh);{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}}
+fdkanhbinmffnbdfjugnh=hghhjfyjf;}}}while(fdkanhbinmffnbdfjugnh);{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 document.getElementById("output").value=gjhdksonfuinevinsesinvspn;{{{{{{{{{{{{{{{{{{{{{{{{{{;}}}}}}}}}}}}}}}}}}}}}}}}}}}

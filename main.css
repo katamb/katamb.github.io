@@ -1,30 +1,33 @@
 body {
+    /*
+    Used http://weavesilk.com/ for it.
+    */
+    background-image: url("background.png");
     font-family: Verdana, Geneva, sans-serif;
     font-size: 16px;
 }
 
-/*
-got help for button design from here:
-https://www.w3schools.com/css/css3_buttons.asp
- */
+a {
+    color: aquamarine;
+}
+
 button {
-    background-color: #310217;
-    border: white;
-    color: white;
+    background-color: #ffffff;
+    border: #000000;
+    color: #000000;
     padding: 6px 15px;
+    border-radius: 1px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
 }
 
-/*
-help with aligning all to center came from
-https://stackoverflow.com/questions/35938650/align-label-to-centre-and-left-positions-in-div
-*/
 div {
     text-align: center;
     padding: 3px;
+    color: white;
+    line-height: 8px;
 }
 #orderName {
     vertical-align: middle;

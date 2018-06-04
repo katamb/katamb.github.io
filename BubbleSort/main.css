@@ -3,10 +3,6 @@ body {
     font-size: 16px;
 }
 
-/*
-got help for button design from here:
-https://www.w3schools.com/css/css3_buttons.asp
- */
 button {
     background-color: #310217;
     border: white;
@@ -18,10 +14,10 @@ button {
     font-size: 16px;
 }
 
-/*
-help with aligning all to center came from
-https://stackoverflow.com/questions/35938650/align-label-to-centre-and-left-positions-in-div
-*/
+p {
+    line-height: 6px;
+}
+
 div {
     text-align: center;
     padding: 3px;
