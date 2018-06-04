@@ -2,7 +2,7 @@ body {
     /*
     Used http://weavesilk.com/ for it.
     */
-    background: #000000 url("/background.png") no-repeat;
+    background-image: url("background.png");
     font-family: Verdana, Geneva, sans-serif;
     font-size: 16px;
 }
