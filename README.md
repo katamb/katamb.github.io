@@ -2,7 +2,7 @@
 
 ## Table of contents
 * [Important](#Important)
-* [More Important](#More Important)
+* [More Important](#More-Important)
 
 ## Important
 This is important chapter
